@@ -3,11 +3,7 @@ name: Release Drafter
 on:
   push:
     branches:
-      - 'v[0-9]+.[0-9]+.*'
-#  pull_request:
-#    branches:
-#      - 'v[0-9]+.[0-9]+.*'
-
+      - 'v[0-9]+.[0-9]+.[0-1]*'
 permissions:
   contents: read
   pull-requests: read
@@ -24,13 +20,16 @@ jobs:
         run: |
           BRANCH_NAME="${{ github.ref_name }}"
           echo "version=${BRANCH_NAME}" >> $GITHUB_OUTPUT
+          
+          SUFFIX=$(echo "${BRANCH_NAME}" | grep -o '[0-9]$')
+          echo "config_file=release-drafter-x.x.${SUFFIX}.yml" >> $GITHUB_OUTPUT
 
       - uses: release-drafter/release-drafter@v6
         with:
+          config-name: "${{ steps.extract_version.outputs.config_file }}"
           name: "${{ steps.extract_version.outputs.version }}"
           tag: "${{ steps.extract_version.outputs.version }}"
           version: "${{ steps.extract_version.outputs.version }}"
           commitish: ${{ github.ref_name }}
-          publish: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
