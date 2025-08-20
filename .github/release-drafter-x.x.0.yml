@@ -1,3 +1,4 @@
+tag-prefix: 'x.x.0-'
 references:
   - 'v[0-9]+\.[0-9]+\..*'
 template: |

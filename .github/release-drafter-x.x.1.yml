@@ -1,0 +1,7 @@
+tag-prefix: 'x.x.1-'
+references:
+  - 'v[0-9]+\.[0-9]+\..*'
+template: |
+  ## Changes
+
+  $CHANGES
