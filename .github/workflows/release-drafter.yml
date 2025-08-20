@@ -24,12 +24,13 @@ jobs:
         run: |
           BRANCH_NAME="${{ github.ref_name }}"
           echo "version=${BRANCH_NAME}" >> $GITHUB_OUTPUT
-          
+
       - uses: release-drafter/release-drafter@v6
         with:
           name: "${{ steps.extract_version.outputs.version }}"
           tag: "${{ steps.extract_version.outputs.version }}"
           version: "${{ steps.extract_version.outputs.version }}"
           commitish: ${{ github.ref_name }}
+          publish: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
