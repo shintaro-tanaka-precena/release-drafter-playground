@@ -1,8 +1,5 @@
 references:
   - 'v[0-9]+\.[0-9]+\..*'
-
-name-template: 'Release $RESOLVED_VERSION'
-tag-template: '$RESOLVED_VERSION'
 template: |
   ## Changes
 
