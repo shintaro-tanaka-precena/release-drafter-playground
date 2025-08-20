@@ -3,3 +3,7 @@ references:
 
 name-template: 'Release $RESOLVED_VERSION'
 tag-template: '$RESOLVED_VERSION'
+template: |
+  ## Changes
+
+  $CHANGES
